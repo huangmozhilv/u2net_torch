@@ -1,3 +1,4 @@
+#### @Chao Huang(huangchao09@zju.edu.cn).
 import numpy as np
 
 from batchgenerators.augmentations.utils import create_zero_centered_coordinate_mesh, elastic_deform_coordinates, \
