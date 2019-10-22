@@ -8,13 +8,14 @@ by Chao Huang, Qingsong Yao, Hu Han, Shankuan Zhu, Shaohua Zhou. This is a code 
 ## Overview
 Brief instruction to apply the code: 
 1. Requirements are listed in `requirments.txt`. 
-2. `data_explore.py` is to explore the characteristics of the images, e.g. pixel spacings.
-3. `preprocess_taskSep.py` is used to do offline preprocessing (e.g. cropping, resampling) of the data samples to save time for training.
-4. `train_model_no_adapters.py` is the mainfile to train the independent models as well as the shared model. 
-5. `train_model_wt_adapters.py` is the mainfile to train the propsed universal model with separable convolution.
-6. Terminal commands to train all models are presented in `train_models.sh`.
+2. Please put the datasets downloaded from [Medical Segmentation Decathlon](http://medicaldecathlon.com/) in `dataset`.
+3. `data_explore.py` is to explore the characteristics of the images, e.g. pixel spacings.
+4. `preprocess_taskSep.py` is used to do offline preprocessing (e.g. cropping, resampling) of the data samples to save time for training.
+5. `train_model_no_adapters.py` is the mainfile to train the independent models as well as the shared model. 
+6. `train_model_wt_adapters.py` is the mainfile to train the propsed universal model with separable convolution.
+7. Terminal commands to train all models are presented in `train_models.sh`.
 
-To accelerate training, we built a fast tool to do online image augmentation with CUDA on GPU(especially for elastic deformation). [link](https://github.com/qsyao/cuda_spatial_deform).
+To accelerate training, we built a fast tool to do online image augmentation with CUDA on GPU(especially for elastic deformation). [**cuda_spatial_defrom**](https://github.com/qsyao/cuda_spatial_deform).
 
 ## Citation
 If you use this code, please cite our paper as:
