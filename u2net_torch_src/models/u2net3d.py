@@ -178,12 +178,12 @@ class DownBlock(nn.Module):
         self.act2 = norm_act(outChans, only="act")
 
     def forward(self, x):
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             out, share_map, para_map = self.op1(x)
         else:
             out = self.op1(x)
         out = self.act1(out)
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             out, share_map, para_map = self.op2(out)
         else:
             out = self.op2(out)
@@ -216,12 +216,12 @@ class UnetUpsample(nn.Module):
     def forward(self, x):
         task_idx = config.task_idx
         out = self.upsamples[task_idx](x)
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             out, share_map, para_map = self.op(out)
         else:
             out = self.op(out)
         out = self.act(out)
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             return out, share_map, para_map
         else:
             return out
@@ -235,12 +235,12 @@ class UpBlock(nn.Module):
         self.act2 = norm_act(outChans, only="act")
 
     def forward(self, x, up_x):
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             out, share_map, para_map = self.op1(x)
         else:
             out = self.op1(x)
         out = self.act1(out)
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             out, share_map, para_map = self.op2(out)
         else:
             out = self.op2(out)
@@ -373,7 +373,7 @@ class u2net3d(nn.Module):
         
         idx = 0
         for i in range(self.depth-2, -1, -1):
-            if config.module == 'parallel_adapter':
+            if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
                 out, share_map, para_map = self.up_samps[i](out)
             else:
                 out = self.up_samps[i](out)
@@ -386,7 +386,7 @@ class u2net3d(nn.Module):
                 idx += 1
         out = self.out_tr_list[task_idx](out, deep_supervision)
         
-        if config.module == 'parallel_adapter':
+        if config.module == 'parallel_adapter' or config.module == 'separable_adapter':
             return out, share_map, para_map
         else:
             return out
