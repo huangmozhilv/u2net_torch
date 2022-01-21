@@ -1,7 +1,7 @@
 
 glob2==0.6
 ipdb==0.11
-ipython==7.0.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 matplotlib==3.0.1
 numpy==1.14 # don't know why numpy==1.16 is much worse than numpy==1.14
